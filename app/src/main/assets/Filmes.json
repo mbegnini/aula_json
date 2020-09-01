@@ -1,0 +1,80 @@
+{
+  "filmes": [
+    {
+      "titulo":"Pulp Fiction",
+      "genero": "Açao",
+      "ano": 1994,
+      "elenco": [
+        {
+          "nome": "John Travolta",
+          "personagem": "Vincent Vega"
+        },
+        {
+          "nome": "Samuel L. Jackson",
+          "personagem": "Jules Winnfield"
+        },
+        {
+          "nome": "Uma Thurman",
+          "personagem": "Mia Wallace"
+        }
+      ]
+    },
+    {
+      "titulo":"Get Out",
+      "genero": "Terror",
+      "ano": 2017,
+      "elenco": [
+        {
+          "nome": "Daniel Kaluuya",
+          "personagem": "Chris Washington"
+        },
+        {
+          "nome": "Allison Williams",
+          "personagem": "Rose Armitage"
+        },
+        {
+          "nome": "Catherine Keener",
+          "personagem": "Missy Armitage"
+        }
+      ]
+    },
+    {
+      "titulo":"Unbreakable",
+      "genero": "Drama",
+      "ano": 2000,
+      "elenco": [
+        {
+          "nome": "Bruce Willis",
+          "personagem": "David Dunn"
+        },
+        {
+          "nome": "Samuel L. Jackson",
+          "personagem": "Elijah Price"
+        },
+        {
+          "nome": "Robin Wright",
+          "personagem": "Audrey Dunn"
+        }
+      ]
+    },
+    {
+      "titulo":"Die Hard",
+      "genero": "Ação",
+      "ano": 1988,
+      "elenco": [
+        {
+          "nome": "Bruce Willis",
+          "personagem": "John McClane"
+        },
+        {
+          "nome": "Bonnie Bedelia",
+          "personagem": "Holly Gennaro McClane"
+        },
+        {
+          "nome": "Alan Rickman",
+          "personagem": "Hans Gruber"
+        }
+      ]
+    }
+  ]
+}
