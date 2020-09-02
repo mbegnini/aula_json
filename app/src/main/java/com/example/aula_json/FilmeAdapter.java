@@ -3,9 +3,7 @@ package com.example.aula_json;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,6 +45,11 @@ public class FilmeAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
             return listaFilmes.size();
+    }
+
+    public void insertFilme(Filme filme) {
+        listaFilmes.add(filme);
+        notifyItemInserted(getItemCount());
     }
 
     public static class FilmeViewHolder extends RecyclerView.ViewHolder{
