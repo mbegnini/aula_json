@@ -10,6 +10,11 @@
         android:orientation="vertical"
         android:background="?attr/selectableItemBackground">
         <TextView
+            android:id="@+id/idTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
             android:id="@+id/tituloTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

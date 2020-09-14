@@ -1,6 +1,8 @@
 package com.example.aula_json;
 
-public class Cast {
+import java.io.Serializable;
+
+public class Cast implements Serializable {
     private String nome;
     private String personagem;
 

@@ -1,11 +1,15 @@
 package com.example.aula_json;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -13,9 +17,11 @@ import java.util.List;
 public class FilmeAdapter extends RecyclerView.Adapter {
 
     List<Filme> listaFilmes;
+    AppCompatActivity activity;
 
-    public FilmeAdapter(List<Filme> listaFilmes) {
+    public FilmeAdapter(List<Filme> listaFilmes, AppCompatActivity activity) {
         this.listaFilmes = listaFilmes;
+        this.activity = activity;
     }
 
     @NonNull
@@ -29,6 +35,7 @@ public class FilmeAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         FilmeViewHolder viewHolder = (FilmeViewHolder) holder;
+        viewHolder.idTextView.setText(String.valueOf(listaFilmes.get(position).getId()));
         viewHolder.tituloTextView.setText(listaFilmes.get(position).getTitulo());
         viewHolder.generoTextView.setText(listaFilmes.get(position).getGenero());
         viewHolder.anoTextView.setText(String.valueOf(listaFilmes.get(position).getAno()));
@@ -40,6 +47,19 @@ public class FilmeAdapter extends RecyclerView.Adapter {
         viewHolder.elenco1PersonagemTextView.setText(listaFilmes.get(position).getElenco().get(0).getPersonagem());
         viewHolder.elenco2PersonagemTextView.setText(listaFilmes.get(position).getElenco().get(1).getPersonagem());
         viewHolder.elenco3PersonagemTextView.setText(listaFilmes.get(position).getElenco().get(2).getPersonagem());
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity.getBaseContext(), InserirFilmeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("filme",listaFilmes.get(holder.getAdapterPosition()));
+                bundle.putInt("position",holder.getAdapterPosition());
+                bundle.putInt("request_code",MainActivity.REQUEST_EDITAR_FILME);
+                intent.putExtras(bundle);
+                activity.startActivityForResult(intent, MainActivity.REQUEST_EDITAR_FILME);
+            }
+        });
     }
 
     @Override
@@ -52,8 +72,24 @@ public class FilmeAdapter extends RecyclerView.Adapter {
         notifyItemInserted(getItemCount());
     }
 
+    public void update(Filme filme, int position){
+        listaFilmes.get(position).setId(filme.getId());
+        listaFilmes.get(position).setTitulo(filme.getTitulo());
+        listaFilmes.get(position).setGenero(filme.getGenero());
+        listaFilmes.get(position).setAno(filme.getAno());
+        listaFilmes.get(position).setElenco(filme.getElenco());
+        notifyItemChanged(position);
+    }
+
+    public void remover(int position){
+        listaFilmes.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position,this.getItemCount());
+    }
+
     public static class FilmeViewHolder extends RecyclerView.ViewHolder{
 
+        TextView idTextView;
         TextView tituloTextView;
         TextView generoTextView;
         TextView anoTextView;
@@ -68,6 +104,7 @@ public class FilmeAdapter extends RecyclerView.Adapter {
         public FilmeViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setTag(this);
+            idTextView = (TextView) itemView.findViewById(R.id.idTextView);
             tituloTextView = (TextView) itemView.findViewById(R.id.tituloTextView);
             generoTextView = (TextView) itemView.findViewById(R.id.generoTextView);
             anoTextView = (TextView) itemView.findViewById(R.id.anoTextView);

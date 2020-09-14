@@ -1,19 +1,32 @@
 package com.example.aula_json;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Filme {
+public class Filme implements Serializable {
 
+    int id;
     private String titulo;
     private String genero;
     private int ano;
     private List<Cast> elenco;
+
+    public Filme() {
+    }
 
     public Filme(String titulo, String genero, int ano, List<Cast> elenco) {
         this.titulo = titulo;
         this.genero = genero;
         this.ano = ano;
         this.elenco = elenco;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitulo() {
